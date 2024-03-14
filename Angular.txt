@@ -1,0 +1,290 @@
+------------------------------------------------------Angular-------------------------------------------------
+@12 Feb
+npm install @angular/cli -g
+
+npm list -g @angular/cli -> pathName
+set path=%path%;pathName
+ng new 02-angular-starter --standalone=false
+npm start / ng serve -o
+
+ctr+c to stop
+
+
+*How ng serve work ?
+-ng serve--->angular.json--(sesrch entry point)-->index.html--(App-root)-->main.ts--(Bootstrap modules)-->appModule--(Bootstrap Component)-->appComponent--->app.component.html(output of app.component.html file will be included inside index.html)
+
+
+
+D:\Angular\Workspace>node -v --------------to check node is present in system or not
+
+D:\Angular\Workspace>npm -v
+
+npm init --------------- create simple javascript project 
+
+code . ------------to open vs code inside folder
+
+-node index.js--------------------use to see output of js file in cmd.
+
+-2nd mentod to execute is write this in json
+
+ "scripts": {
+   "start": "node index.js"
+
+  },
+
+
+npm install typescript --save-dev ----------------development dependency
+
+
+npm install @angular/cli -g ------------to install angular CLI
+ng version
+
+set path=%path%;C:\Users\DEVK\AppData\Roaming\npm -----------------------use to set pathafter install angular cli by npm list -g @angular/cli
+
+ng new 02-angular-starter --standalone=false ------------create angular project
+----------------------------------------------------------------------------------------
+
+ -angular is typescript based frontend framework which is used to create 
+  frontend of our application.(using angular we can create single page application)
+
+-Rest api is used to connect 2 different kinds of application like java springboot application and 
+node application.(through JSON they comunicate)
+
+
+frontend-->angular application----JSON----->java application----------->database
+
+npm=node package manager
+
+
+purpose of package = package.json help to store details about the package including
+ the dependencyes and script.
+ 
+-script like start which is inbuld not custum script use "npm start"
+-if we use custom name line "dev": "node index.js" then we have to run "npm run dev"
+
+
+how to install nwe package-
+*npm install <package_name> by default package install locally if want to install 
+ globally use -g
+* npm uninstall <package_name> to uninstall package
+
+production dependancy- npm install typescript
+development dependancy- npm install typescript --save-dev
+
+
+
+-node_modules = stores actual dependency required for the project.if this is deleted by mistake use npm install to reinstall the dependancy.
+
+-ng serve help to deployee the angular into node server.
+
+
+
+*angular component is a main building block of a angular project using which we will get UI.
+*command for creating an component called as "ng generate component <component_name>" or "ng g c <component_name>"
+ file create afrer this command is welcome.component.ts, welcome.component.html, welcome.component.css, welcome.component.spec.ts and update app module.
+
+#Binding
+*sharing a data between its typesctipt class and its associate templete and vicevarsa.
+*one way datawinding= when our data is moving from either typescript to html or html to
+ typescript is called one way datawinding.
+
+
+
+css
+StyleURL-external css
+styleurls= for multiple css files
+styles use `` for multli line codes in js or ts
+
+
+[value] used to one way communination
+
+*to achive two way datawinding use banana box.[()]
+
+
+
+-----------------------------------------------------------------------
+
+@TypeScript
+mkdir 05-typescript-starter
+cd 05-typescript-starter
+npm init --yes
+npm install typescript
+
+tsc main.ts ------------to compile
+node main-----------to run ts 
+
+-ts is a superset of js.
+-all the features of js supported by the ts along with that some additional features support in ts.
+   for that use "tsc main.ts".
+-we cannot execute typescript for execute we have to convert it into js.
+-typescript has some datatypes but js doesn't have datatypes.
+-js is the dynamically typed language where as ts is a static type language.
+
+
+
+
+@Modules
+ng g m <module_name>
+-Module is a basic building block of a angular project which can hold the componemts and 
+the custon file along with that it register some services.
+
+-NgModule is a decurator we will apply at the top of the class to make this class as a module.
+-NgModule contains few attributes like 1.declaration contains- costom component and custom files.
+-providers help to declare a services.
+
+@Component
+ng g c student/list-students
+
+in app.mpdule.ts
+ imports: [
+    BrowserModule,
+    AppRoutingModule,    DepartmentsComponent
+    StudentModule
+  ],
+
+in student.module.ts
+exports: [ListStudentsComponent]
+
+@Directive
+-directive is a class which does a small change in your existing component or file.
+3 Types of diractive in angular:
+1. component directive
+2. atribute directive ---- ngModel,ngStyle,ngClass
+3. structural directive ---ngFor,ngIf
+
+in app.component.html
+<div *ngFor="let s of students">
+    <app-list-students></app-list-students>
+  </div>
+
+in app.component.ts
+export class AppComponent {
+  title = '06-student-app';
+  students:any[]=[
+    {studentId:101,studentName:'Raj',studentScore:75},
+    {studentId:103,studentName:'Ram',studentScore:95},
+    {studentId:104,studentName:'Sayam',studentScore:65},
+    {studentId:105,studentName:'Dev',studentScore:86}
+  ]
+}
+
+
+- if we want to pass a data from parent component to child component then @Input decutator is used.
+
+
+@Input=take data from parent to child.
+@output=takes data from chlid to parent.
+------------------------------------------------------------------------------------------
+
+arr:number[]=[]
+let numArr:number[]=[1,2,3,4]
+
+let strArr:string[]=['dev','ram']
+
+function addtwo(a:number,b:number):number{
+  return a+b;
+}
+
+function addtwo(a,b){
+ return a+b;
+}
+
+class contain 2 no as a property 
+
+class demp{
+a:number,
+b:number
+
+add(a,b){
+c=this.a+this.b;
+}
+
+
+
+
+
+
+
+
+
+
+create a class called factorial
+in a class declare 1 property called nunber and initialise a property by parametrise constructor
+create a fact function thich give factorial of a no.
+
+#angular service
+-angular service is singletun object.
+-we keep our data in the service and that data can be shared by multiple component. 
+
+
+@service
+-ng g s <service_name>
+-ng g s student/student
+
+
+@Angular Pipe
+-angular pipe will allow you to display data in custom format.
+-pipe help to convert the file from one format to other.
+-ng g p <pipe_name>
+-pipe is also a typescript class with one special decurator called @Pipe 
+and typescript class should implement pipe transform interface and transform function.
+
+@atribute  directive
+ngstyle
+ngclass
+ngmodel
+
+-------------------------------angular Lifecycle-------------------
+Three lifecycle hok-
+-ngOn InIt
+          --------inside oninit interface
+-ngOn distroy       
+          --------inside ondistroyee interface
+-ngOn changes
+          --------inside onchanges interface
+*constructor and ngInit they will called only once during entire lifecycle of the component.
+
+*ngOn init or ng distroyee is only called once during entire lifecycle.
+*ng on change called every time when we make change inside component.
+
+
+----------------------Form handling--------------
+two way to use form in angular:
+1.Templet driven form --useful when include everything inside html templet
+                      --import formsModule
+
+2.Reactive form  --most of the logic inside ts class.
+                 --import reactiveFormsModule
+
+
+*By using ngclass we can apply any css class dynamically on any particular value.
+*By using ngStyle we can apply particular css property in page.
+
+
+@Marathon:
+1.typescript--class function ----------factorial ,multiplication table, prime number, sum of digit
+2.component- databinding
+3.form with databinding
+4.data sharing bt parent chile @input,@output
+5.http service
+
+
+---------------------------http--------------------------
+ui--->(MY.COMP.TS----->MYCCOMP.HTML----->MY.SERVICE.TS)---->REST API(JSON)----->JSON server
+           ^                               ^
+           |                               |
+           --------------------------------
+
+-npx json-server
+
+-npx json-server --watch studentdb.json
+
+-json is use for data transfer.
+
+-httpget method helt to get all the data through the rest api and the returntype is observable.
+
+
+-------------------------single page application-------------
+-is a web application that intract with the user by dynamically rewriting the 
+ current web page with the new data without reloading the entire webpage.
+-by using routing we can achive the concept of single page application in npm.
